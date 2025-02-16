@@ -1,5 +1,6 @@
 package dev.siea.uilabs;
 
+import dev.siea.uilabs.frame.Frame;
 import dev.siea.uilabs.frame.FrameView;
 import dev.siea.uilabs.frame.PagedFrameView;
 import org.bukkit.plugin.Plugin;
@@ -38,7 +39,7 @@ public class PagedGlobalInventoryGui extends GlobalInventoryGui {
     }
 
     private void reorganizePages() {
-        for (FrameView inventoryFrame : inventoryFrames) {
+        for (Frame inventoryFrame : inventoryFrames) {
             ((PagedFrameView) inventoryFrame).updatePaginationData(inventoryFrames.size(), inventoryFrames.indexOf(inventoryFrame) + 1);
         }
     }
