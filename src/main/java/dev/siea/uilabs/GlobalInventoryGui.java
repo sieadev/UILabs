@@ -1,5 +1,6 @@
 package dev.siea.uilabs;
 
+import dev.siea.uilabs.frame.Frame;
 import dev.siea.uilabs.frame.FrameView;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,12 +10,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GlobalInventoryGui extends AbstractInventoryGui {
-    protected final List<FrameView> inventoryFrames = new ArrayList<>();
-
     public GlobalInventoryGui(Plugin holder) {
         this(holder, true);
     }
@@ -48,11 +44,11 @@ public class GlobalInventoryGui extends AbstractInventoryGui {
     }
 
     public void open(@NotNull Player player) {
-        player.openInventory(inventoryFrames.getFirst().getInventory());
+        player.openInventory(((FrameView) inventoryFrames.getFirst()).getInventory());
     }
 
     public void open(@NotNull Player player, int index) {
-        player.openInventory(inventoryFrames.get(index).getInventory());
+        player.openInventory(((FrameView) inventoryFrames.get(index)).getInventory());
     }
 
     public final Plugin getHolder() {
@@ -70,8 +66,8 @@ public class GlobalInventoryGui extends AbstractInventoryGui {
 
         @EventHandler
         public void onInventoryClick(InventoryClickEvent e) {
-            for (FrameView inventoryFrame : inventoryFrames) {
-                if (e.getInventory().equals(inventoryFrame.getInventory())) {
+            for (Frame inventoryFrame : inventoryFrames) {
+                if (e.getInventory().equals(((FrameView) inventoryFrame).getInventory())) {
                     e.setCancelled(true);
                     return;
                 }
