@@ -11,29 +11,23 @@ import java.util.List;
 public class ItemElement extends Element {
     private ItemStack itemStack;
 
-    public ItemElement(int slot) {
-        this(slot, Material.BARRIER);
+    public ItemElement(@NotNull Material material) {
+        this(material, null);
     }
 
-    public ItemElement(int slot, @NotNull Material material) {
-        this(slot, material, null);
+    public ItemElement(@NotNull Material material, String name) {
+        this(material, name, null);
     }
 
-    public ItemElement(int slot, @NotNull Material material, String name) {
-        this(slot, material, name, null);
+    public ItemElement(@NotNull Material material, String name, List<String> lore) {
+        this(material, name, lore, 1);
     }
 
-    public ItemElement(int slot, @NotNull Material material, String name, List<String> lore) {
-        this(slot, material, name, lore, 1);
-    }
-
-    public ItemElement(int slot, @NotNull Material material, String name, List<String> lore, int amount) {
-        super(slot);
+    public ItemElement(@NotNull Material material, String name, List<String> lore, int amount) {
         this.itemStack = createItem(material, name, lore, amount);
     }
 
-    public ItemElement(int slot, ItemStack itemStack) {
-        super(slot);
+    public ItemElement(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 

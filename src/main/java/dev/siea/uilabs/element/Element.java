@@ -1,17 +1,34 @@
 package dev.siea.uilabs.element;
 
 public class Element {
-    protected int slot;
+    protected Priority priority;
 
-    public Element(int slot) {
-        this.slot = slot;
+    public Element() {
+        this(Priority.NORMAL);
     }
 
-    public final int getSlot() {
-        return slot;
+    public Element(Priority priority) {
+        this.priority = priority;
     }
 
-    public final void setSlot(int slot) {
-        this.slot = slot;
+    public final Priority getPriority() {
+        return priority;
+    }
+
+    public final void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public final void setPriority(int priority) {
+        this.priority = Priority.values()[priority];
+    }
+
+    public enum Priority {
+        BACKGROUND,
+        LOWEST,
+        LOW,
+        NORMAL,
+        HIGH,
+        HIGHEST;
     }
 }

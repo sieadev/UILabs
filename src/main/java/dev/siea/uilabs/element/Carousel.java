@@ -17,35 +17,31 @@ public class Carousel extends Element {
     private int speed = 5;
     private int currentIndex = 0;
 
-    public Carousel(int slot) {
-        super(slot);
+    public Carousel() {
+        super();
         name = null;
     }
 
-    public Carousel(int slot, ItemElement... itemElements) {
-        super(slot);
+    public Carousel(ItemElement... itemElements) {
         name = null;
         Collections.addAll(elements, itemElements);
     }
 
-    public Carousel(int slot, ItemStack... itemStacks) {
-        super(slot);
+    public Carousel(ItemStack... itemStacks) {
         name = null;
         for (ItemStack itemStack : itemStacks) {
             elements.add(createItemElement(itemStack));
         }
     }
 
-    public Carousel(int slot, String name, Material... material) {
-        super(slot);
+    public Carousel(String name, Material... material) {
         this.name = name;
         for (int i = 1; i < material.length; i++) {
             elements.add(createItemElement(material[i], name, Collections.singletonList("")));
         }
     }
 
-    public Carousel(int slot, String name, String lore, Material... material) {
-        super(slot);
+    public Carousel(String name, String lore, Material... material) {
         this.name = name;
         this.lore.add(lore);
         for (int i = 1; i < material.length; i++) {
@@ -91,6 +87,6 @@ public class Carousel extends Element {
     }
 
     protected ItemElement createItemElement(ItemStack itemStack) {
-        return new ItemElement(slot, itemStack);
+        return new ItemElement(itemStack);
     }
 }

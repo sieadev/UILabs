@@ -8,28 +8,24 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class Button extends ItemElement {
-    public Button(int slot) {
-        super(slot);
+    public Button(Material material) {
+        super(material);
     }
 
-    public Button(int slot, Material material) {
-        super(slot, material);
+    public Button(Material material, String name) {
+        super(material, name);
     }
 
-    public Button(int slot, Material material, String name) {
-        super(slot, material, name);
+    public Button(Material material, String name, List<String> lore) {
+        super(material, name, lore);
     }
 
-    public Button(int slot, Material material, String name, List<String> lore) {
-        super(slot, material, name, lore);
-    }
-
-    public Button(int slot, Material material, String name, List<String> lore, int amount) {
-        super(slot, material, name, lore, amount);
+    public Button(Material material, String name, List<String> lore, int amount) {
+        super(material, name, lore, amount);
     }
 
     public Button(int slot, ItemStack itemStack) {
-        super(slot, itemStack);
+        super(itemStack);
     }
 
     public void onButtonPressed(InventoryClickEvent e) {
