@@ -1,7 +1,7 @@
 package dev.siea.uilabs.element;
 
 public class Element {
-    private int slot;
+    protected int slot;
 
     public Element(int slot) {
         this.slot = slot;
