@@ -76,9 +76,9 @@ public class GlobalInventoryGui extends AbstractInventoryGui {
 
         @EventHandler
         public void onInventoryClose(InventoryCloseEvent e) {
-            for (FrameView inventoryFrame : inventoryFrames) {
-                if (e.getInventory().equals(inventoryFrame.getInventory())) {
-                    if (!allowClose) e.getPlayer().openInventory(inventoryFrame.getInventory());
+            for (Frame inventoryFrame : inventoryFrames) {
+                if (e.getInventory().equals(((FrameView) inventoryFrame).getInventory())) {
+                    if (!allowClose) e.getPlayer().openInventory(((FrameView) inventoryFrame).getInventory());
 
                     break;
                 }
