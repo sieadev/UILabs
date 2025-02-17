@@ -48,4 +48,9 @@ public class ItemElement extends Element {
         item.setItemMeta(meta);
         return item;
     }
+
+    @Override
+    public ItemElement clone() {
+        return (ItemElement) super.clone();
+    }
 }

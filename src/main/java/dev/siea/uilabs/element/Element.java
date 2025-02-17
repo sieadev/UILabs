@@ -1,6 +1,6 @@
 package dev.siea.uilabs.element;
 
-public class Element {
+public class Element implements Cloneable {
     protected Priority priority;
 
     public Element() {
@@ -30,5 +30,14 @@ public class Element {
         NORMAL,
         HIGH,
         HIGHEST;
+    }
+
+    @Override
+    public Element clone() {
+        try {
+            return (Element) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
     }
 }

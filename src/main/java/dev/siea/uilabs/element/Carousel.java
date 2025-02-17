@@ -34,6 +34,13 @@ public class Carousel extends Element {
         }
     }
 
+    public Carousel(Material... material) {
+        name = null;
+        for (int i = 1; i < material.length; i++) {
+            elements.add(createItemElement(material[i], null, Collections.singletonList("")));
+        }
+    }
+
     public Carousel(String name, Material... material) {
         this.name = name;
         for (int i = 1; i < material.length; i++) {
@@ -69,24 +76,34 @@ public class Carousel extends Element {
         return speed;
     }
 
+    public ItemElement getCurrent() {
+        return elements.get(currentIndex);
+    }
+
     public ItemElement next() {
         currentIndex++;
-        if (currentIndex >= elements.size()) {
+        if (currentIndex == elements.size()) {
             currentIndex = 0;
         }
         return elements.get(currentIndex);
     }
 
-    protected ItemElement createItemElement(@NotNull Material material, @Nullable String name, @Nullable List<String> lore) {
+    protected ItemElement createItemElement(@NotNull Material material, String name, List<String> lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
         if (name != null) meta.setDisplayName(name);
         if (lore != null) meta.setLore(lore);
+        item.setItemMeta(meta);
         return createItemElement(item);
     }
 
     protected ItemElement createItemElement(ItemStack itemStack) {
         return new ItemElement(itemStack);
+    }
+
+    @Override
+    public Carousel clone() {
+        return (Carousel) super.clone();
     }
 }

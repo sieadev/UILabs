@@ -31,4 +31,9 @@ public class Button extends ItemElement {
     public void onButtonPressed(InventoryClickEvent e) {
         e.getWhoClicked().sendMessage(ChatColor.GREEN + "This is a button");
     }
+
+    @Override
+    public Button clone() {
+        return (Button) super.clone();
+    }
 }

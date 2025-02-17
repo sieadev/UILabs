@@ -19,4 +19,9 @@ public class CheckBox extends Button {
     public boolean isChecked() {
         return checked;
     }
+
+    @Override
+    public CheckBox clone() {
+        return (CheckBox) super.clone();
+    }
 }

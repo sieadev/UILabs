@@ -57,8 +57,8 @@ public class Border {
         }
         int borderIndex = 0;
         for (Integer slot : getBorderSlots(height)) {
-            System.out.println("Adding Slot: " + slot);
-            border.put(slot, borderParts[borderIndex]);
+            Element element = borderParts[borderIndex].clone();
+            border.put(slot, element);
             borderIndex++;
             if (borderIndex >= borderParts.length) {
                 borderIndex = 0;
