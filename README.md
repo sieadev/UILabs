@@ -1,4 +1,4 @@
-## UILabs
+# UILabs
 **UILabs** is an API for Spigot plugins, enabling efficient and safe custom **inventory GUIs** in Minecraft.
 
 ## Why UILabs?
