@@ -128,6 +128,7 @@ public final class Frame {
         public void onInventoryClick(InventoryClickEvent e) {
             for (Inventory view : views) {
                 if (e.getInventory().equals(view)) {
+                    e.setCancelled(true);
                     Element element = elements.get(e.getSlot());
                     if (element instanceof Button button) {
                         button.onButtonPressed(e);

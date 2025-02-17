@@ -15,11 +15,11 @@ public class UILabs {
         this.plugin = plugin;
     }
 
-    public InventoryGui create(String name) {
+    public DefaultInventoryGui create(String name) {
         return create(name, 9, 6);
     }
 
-    public InventoryGui create(String name, int width, int height) {
+    public DefaultInventoryGui create(String name, int width, int height) {
         DefaultInventoryGui inventoryGui = new DefaultInventoryGui(this, name, width, height);
         if (defaultBorder != null) inventoryGui.setBorder(defaultBorder);
         inventoryGui.setAllowClose(allowCloseDefault);
