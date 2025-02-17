@@ -31,7 +31,7 @@ To get use UILabs in your plugin, add it as a dependency in your project.
 <dependency>
     <groupId>dev.siea.uilabs</groupId>
     <artifactId>UILabs</artifactId>
-    <version>0.3.4-SNAPSHOT</version>
+    <version>0.3.8-SNAPSHOT</version>
 </dependency>
 ```
 #### Gradle
@@ -44,7 +44,7 @@ repositories {
 }
 
 dependencies {
-    implementation "dev.siea.uilabs:UILabs:0.3.4-SNAPSHOT"
+    implementation "dev.siea.uilabs:UILabs:0.3.8-SNAPSHOT"
 }
 ```
 
