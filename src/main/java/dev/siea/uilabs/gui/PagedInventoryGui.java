@@ -34,6 +34,13 @@ public class PagedInventoryGui extends AbstractInventoryGui {
     }
 
     @Override
+    public final void view(Player... players) {
+        for (Player player : players) {
+            view(player);
+        }
+    }
+
+    @Override
     public void closeAll() {
         for (DefaultInventoryGui page : pages.values()) {
             page.closeAll();

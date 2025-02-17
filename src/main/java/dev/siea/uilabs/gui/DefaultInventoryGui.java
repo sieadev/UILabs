@@ -23,6 +23,13 @@ public final class DefaultInventoryGui extends AbstractInventoryGui {
         player.openInventory(view);
     }
 
+    @Override
+    public void view(Player... players) {
+        for (Player player : players) {
+            view(player);
+        }
+    }
+
     public void addElement(Element element) {
         frame.addElement(element);
     }

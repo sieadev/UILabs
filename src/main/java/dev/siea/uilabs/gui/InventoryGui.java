@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 public interface InventoryGui {
     void view(Player player);
+    void view(Player... players);
     void setBorder(Border border);
     void setAllowClose(boolean allowClose);
     void closeAll();
