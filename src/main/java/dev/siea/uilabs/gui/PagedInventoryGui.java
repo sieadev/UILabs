@@ -13,12 +13,12 @@ import java.util.*;
 public class PagedInventoryGui extends AbstractInventoryGui {
     private final Map<Integer, DefaultInventoryGui> pages = new HashMap<>();
 
-    public PagedInventoryGui(UILabs parent, String name, int width, int height) {
-        super(parent, name, width, height);
+    public PagedInventoryGui(UILabs parent, String name, int height, int width) {
+        super(parent, name, height, width);
     }
 
     public DefaultInventoryGui create() {
-        DefaultInventoryGui page = new DefaultInventoryGui(parent, name, width, height);
+        DefaultInventoryGui page = new DefaultInventoryGui(parent, name, height, width);
         pages.put(pages.size(), page);
         updatePaginationButton();
         return page;
@@ -31,6 +31,13 @@ public class PagedInventoryGui extends AbstractInventoryGui {
     @Override
     public final void view(Player player) {
         view(player, 1);
+    }
+
+    @Override
+    public void closeAll() {
+        for (DefaultInventoryGui page : pages.values()) {
+            page.closeAll();
+        }
     }
 
     public final void view(Player player, int page) {

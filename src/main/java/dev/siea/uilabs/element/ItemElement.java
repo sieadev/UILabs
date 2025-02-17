@@ -45,6 +45,7 @@ public class ItemElement extends Element {
         assert meta != null;
         if (name != null) meta.setDisplayName(name);
         if (lore != null) meta.setLore(lore);
+        item.setItemMeta(meta);
         return item;
     }
 }

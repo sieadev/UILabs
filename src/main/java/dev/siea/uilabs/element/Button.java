@@ -24,7 +24,7 @@ public class Button extends ItemElement {
         super(material, name, lore, amount);
     }
 
-    public Button(int slot, ItemStack itemStack) {
+    public Button(ItemStack itemStack) {
         super(itemStack);
     }
 

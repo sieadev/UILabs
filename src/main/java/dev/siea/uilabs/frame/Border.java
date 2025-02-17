@@ -28,7 +28,7 @@ public class Border {
     private Border(Material... material) {
         Element[] borderParts = new Element[material.length];
         for (int i = 0; i < material.length; i++) {
-            ItemElement itemElement = new ItemElement(material[i], "");
+            ItemElement itemElement = new ItemElement(material[i], " ");
             itemElement.setPriority(1);
             borderParts[i] = itemElement;
         }
@@ -50,14 +50,15 @@ public class Border {
         this.borderParts = borderParts;
     }
 
-    Map<Element, Integer> generateBorder(int height) {
-        Map<Element, Integer> border = new HashMap<>();
+    Map<Integer, Element> generateBorder(int height) {
+        Map<Integer, Element> border = new HashMap<>();
         if (height < 3) {
             return border;
         }
         int borderIndex = 0;
         for (Integer slot : getBorderSlots(height)) {
-            border.put(borderParts[borderIndex], slot);
+            System.out.println("Adding Slot: " + slot);
+            border.put(slot, borderParts[borderIndex]);
             borderIndex++;
             if (borderIndex >= borderParts.length) {
                 borderIndex = 0;
@@ -66,7 +67,7 @@ public class Border {
         return border;
     }
 
-    private List<Integer> getBorderSlots(int rows) {
+    private static List<Integer> getBorderSlots(int rows) {
         List<Integer> result = new ArrayList<>();
         for (int c = 0; c < 9; c++) {
             result.add(c);

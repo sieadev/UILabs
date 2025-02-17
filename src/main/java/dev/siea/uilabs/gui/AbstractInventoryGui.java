@@ -9,15 +9,15 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 abstract class AbstractInventoryGui implements InventoryGui {
     protected final UILabs parent;
     protected final String name;
-    protected final int width;
     protected final int height;
+    protected final int width;
     private boolean allowClose = true;
 
-    public AbstractInventoryGui(UILabs parent, String name, int width, int height){
+    public AbstractInventoryGui(UILabs parent, String name, int height, int width){
         this.name = name;
         this.parent = parent;
-        this.width = width;
         this.height = height;
+        this.width = width;
     }
 
     public void onInventoryClick(InventoryClickEvent e) {

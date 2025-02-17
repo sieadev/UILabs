@@ -8,5 +8,6 @@ public interface InventoryGui {
     void view(Player player);
     void setBorder(Border border);
     void setAllowClose(boolean allowClose);
+    void closeAll();
     public UILabs getParent();
 }
