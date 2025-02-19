@@ -2,13 +2,23 @@ package dev.siea.uilabs.element;
 
 public class Element implements Cloneable {
     protected Priority priority;
+    protected boolean fixedPosition;
 
     public Element() {
-        this(Priority.NORMAL);
+        this(Priority.NORMAL, false);
     }
 
     public Element(Priority priority) {
+        this(priority, false);
+    }
+
+    public Element(boolean fixedPosition) {
+        this(Priority.NORMAL, fixedPosition);
+    }
+
+    public Element(Priority priority, boolean fixedPosition) {
         this.priority = priority;
+        this.fixedPosition = fixedPosition;
     }
 
     public final Priority getPriority() {
@@ -21,6 +31,14 @@ public class Element implements Cloneable {
 
     public final void setPriority(int priority) {
         this.priority = Priority.values()[priority];
+    }
+
+    public final boolean isFixedPosition() {
+        return fixedPosition;
+    }
+
+    public final void setFixedPosition(boolean fixedPosition) {
+        this.fixedPosition = fixedPosition;
     }
 
     public enum Priority {
