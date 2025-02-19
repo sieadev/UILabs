@@ -4,7 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,7 +92,7 @@ public class Carousel extends Element {
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
         if (name != null) meta.setDisplayName(name);
-        if (lore != null) meta.setLore(lore);
+        if (!lore.isEmpty()) meta.setLore(lore);
         item.setItemMeta(meta);
         return createItemElement(item);
     }
