@@ -3,7 +3,8 @@ package dev.siea.uilabs.gui;
 import dev.siea.uilabs.UILabs;
 import dev.siea.uilabs.element.Button;
 import dev.siea.uilabs.frame.Border;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -13,7 +14,7 @@ import java.util.*;
 public class PagedInventoryGui extends AbstractInventoryGui {
     private final Map<Integer, DefaultInventoryGui> pages = new HashMap<>();
 
-    public PagedInventoryGui(UILabs parent, String name, int height, int width) {
+    public PagedInventoryGui(UILabs parent, Component name, int height, int width) {
         super(parent, name, height, width);
     }
 
@@ -78,7 +79,7 @@ public class PagedInventoryGui extends AbstractInventoryGui {
         private final int page;
 
         private BackwardPaginationButton(int page) {
-            super(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "Previous Page", Collections.singletonList(ChatColor.GRAY + "Click to go to the previous page (" + page + "/" + pages.size() + ")"));
+            super(Material.SPECTRAL_ARROW, Component.text("Previous Page", NamedTextColor.YELLOW), Collections.singletonList(Component.text("Click to go to the previous page (" + page + "/" + pages.size() + ")", NamedTextColor.GRAY)));
             this.page = page;
         }
 
@@ -100,7 +101,7 @@ public class PagedInventoryGui extends AbstractInventoryGui {
         private final int page;
 
         private ForwardPaginationButton(int page) {
-            super(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "Next Page", Collections.singletonList(ChatColor.GRAY + "Click to go to the next page (" + page + "/" + pages.size() + ")"));
+            super(Material.SPECTRAL_ARROW, Component.text("Next Page", NamedTextColor.YELLOW), Collections.singletonList(Component.text("Click to go to the next page (" + page + "/" + pages.size() + ")", NamedTextColor.GRAY)));
             this.page = page;
         }
 

@@ -2,6 +2,7 @@ package dev.siea.uilabs.frame;
 
 import dev.siea.uilabs.element.Element;
 import dev.siea.uilabs.element.ItemElement;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,7 +29,7 @@ public class Border {
     private Border(Material... material) {
         Element[] borderParts = new Element[material.length];
         for (int i = 0; i < material.length; i++) {
-            ItemElement itemElement = new ItemElement(material[i], " ");
+            ItemElement itemElement = new ItemElement(material[i], Component.space());
             itemElement.setPriority(1);
             borderParts[i] = itemElement;
         }

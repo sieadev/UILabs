@@ -4,6 +4,7 @@ import dev.siea.uilabs.frame.Border;
 import dev.siea.uilabs.gui.DefaultInventoryGui;
 import dev.siea.uilabs.gui.InventoryGui;
 import dev.siea.uilabs.gui.PagedInventoryGui;
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
@@ -23,11 +24,11 @@ public class UILabs {
         plugin.getServer().getPluginManager().registerEvents(new LifecycleListener(), plugin);
     }
 
-    public DefaultInventoryGui create(String name) {
+    public DefaultInventoryGui create(Component name) {
         return create(name, 6, 9);
     }
 
-    public DefaultInventoryGui create(String name, int height, int width) {
+    public DefaultInventoryGui create(Component name, int height, int width) {
         DefaultInventoryGui inventoryGui = new DefaultInventoryGui(this, name, height, width);
         if (defaultBorder != null) inventoryGui.setBorder(defaultBorder);
         inventoryGui.setAllowClose(allowCloseDefault);
@@ -35,11 +36,11 @@ public class UILabs {
         return inventoryGui;
     }
 
-    public PagedInventoryGui createPaged(String name) {
+    public PagedInventoryGui createPaged(Component name) {
         return createPaged(name, 9, 6);
     }
 
-    public PagedInventoryGui createPaged(String name, int height, int width) {
+    public PagedInventoryGui createPaged(Component name, int height, int width) {
         PagedInventoryGui inventoryGui = new PagedInventoryGui(this, name, height, width);
         if (defaultBorder != null) inventoryGui.setBorder(defaultBorder);
         inventoryGui.setAllowClose(allowCloseDefault);
