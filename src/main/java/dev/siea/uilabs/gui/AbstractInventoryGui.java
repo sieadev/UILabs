@@ -1,6 +1,7 @@
 package dev.siea.uilabs.gui;
 
 import dev.siea.uilabs.UILabs;
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -8,12 +9,12 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 
 abstract class AbstractInventoryGui implements InventoryGui {
     protected final UILabs parent;
-    protected final String name;
+    protected final Component name;
     protected final int height;
     protected final int width;
     private boolean allowClose = true;
 
-    public AbstractInventoryGui(UILabs parent, String name, int height, int width){
+    public AbstractInventoryGui(UILabs parent, Component name, int height, int width){
         this.name = name;
         this.parent = parent;
         this.height = height;

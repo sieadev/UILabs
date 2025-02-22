@@ -63,16 +63,16 @@ To create a GUI with UILabs, follow these steps:
     ```
 2. **Create a GUI**: Use the `UILabs#create` method to create a ``DefaultInventoryGui`` instance. You can specify the title as well as the size(`height`, `width`) of the GUI. 
     ```java
-    DefaultInventoryGui gui = uilabs.create("MyGUI", 6, 9);
+    DefaultInventoryGui gui = uilabs.create(Component.text("MyGUI"), 6, 9);
     ```
     **Yes, it's that simple!** You now have a GUI instance that you can use to add [Elements](#elements) and show to players.
 
 3. **Add Components**: UILabs provides a variety of [Elements](#elements), that you can add to your GUI. Here's an example of adding a `Button` Element to the GUI:
     ```java
-    Button button = new Button(Material.EMERALD_BLOCK, ChatColor.GREEN + "Click me!") {
+    Button button = new Button(Material.EMERALD_BLOCK, Component.text("Click me!", NamedTextColor.GREEN)) {
         @Override
         public void onButtonPressed(InventoryClickEvent e) {
-            e.getWhoClicked().sendMessage(ChatColor.GREEN + "Button clicked! :D");
+            e.getWhoClicked().sendMessage(Component.text("Button clicked! :D", NamedTextColor.GREEN));
         }
     };
     gui.addElement(button);

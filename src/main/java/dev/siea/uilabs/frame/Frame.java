@@ -5,6 +5,7 @@ import dev.siea.uilabs.element.Carousel;
 import dev.siea.uilabs.element.Element;
 import dev.siea.uilabs.element.ItemElement;
 import dev.siea.uilabs.gui.InventoryGui;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,14 +21,14 @@ import java.util.Map;
 
 public final class Frame {
     private final InventoryGui parent;
-    private final String name;
+    private final Component name;
     private final int width;
     private final int height;
     private final List<Inventory> views = new ArrayList<>();
     private final Map<Integer, Element> elements = new HashMap<>();
     private final CarouselTimer carouselTimer = new CarouselTimer();
 
-    public Frame(InventoryGui parent, String name, int width, int height) {
+    public Frame(InventoryGui parent, Component name, int width, int height) {
         this.parent = parent;
         if (height < 1) height = 1;
         if (height > 6) height = 6;
@@ -45,7 +46,7 @@ public final class Frame {
         return getView(name);
     }
 
-    public Inventory getView(String name) {
+    public Inventory getView(Component name) {
         Inventory inventory = Bukkit.createInventory(null, height * width, name);
         for (Integer slot : elements.keySet()) {
             Element element = elements.get(slot);

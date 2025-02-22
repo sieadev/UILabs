@@ -4,6 +4,7 @@ import dev.siea.uilabs.UILabs;
 import dev.siea.uilabs.element.Element;
 import dev.siea.uilabs.frame.Border;
 import dev.siea.uilabs.frame.Frame;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -12,7 +13,7 @@ public final class DefaultInventoryGui extends AbstractInventoryGui {
     private final Inventory view;
     private final Frame frame;
 
-    public DefaultInventoryGui(UILabs parent,String name, int height, int width) {
+    public DefaultInventoryGui(UILabs parent,Component name, int height, int width) {
         super(parent, name, height, width);
         this.frame = new Frame(this, name, width, height);
         this.view = frame.getView();

@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import net.kyori.adventure.text.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,8 +13,8 @@ import java.util.List;
 
 public class Carousel extends Element {
     private final List<ItemElement> elements = new ArrayList<>();
-    private final String name;
-    private final List<String> lore = new ArrayList<>();
+    private final Component name;
+    private final List<Component> lore = new ArrayList<>();
     private int speed = 5;
     private int currentIndex = 0;
 
@@ -37,18 +38,18 @@ public class Carousel extends Element {
     public Carousel(Material... material) {
         name = null;
         for (int i = 1; i < material.length; i++) {
-            elements.add(createItemElement(material[i], null, Collections.singletonList("")));
+            elements.add(createItemElement(material[i], null, Collections.singletonList(Component.empty())));
         }
     }
 
-    public Carousel(String name, Material... material) {
+    public Carousel(Component name, Material... material) {
         this.name = name;
         for (int i = 1; i < material.length; i++) {
-            elements.add(createItemElement(material[i], name, Collections.singletonList("")));
+            elements.add(createItemElement(material[i], name, Collections.singletonList(Component.empty())));
         }
     }
 
-    public Carousel(String name, String lore, Material... material) {
+    public Carousel(Component name, Component lore, Material... material) {
         this.name = name;
         this.lore.add(lore);
         for (int i = 1; i < material.length; i++) {
@@ -88,12 +89,12 @@ public class Carousel extends Element {
         return elements.get(currentIndex);
     }
 
-    protected ItemElement createItemElement(@NotNull Material material, String name, List<String> lore) {
+    protected ItemElement createItemElement(@NotNull Material material, Component name, List<Component> lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        if (name != null) meta.setDisplayName(name);
-        if (lore != null) meta.setLore(lore);
+        if (name != null) meta.displayName(name);
+        if (lore != null) meta.lore(lore);
         item.setItemMeta(meta);
         return createItemElement(item);
     }

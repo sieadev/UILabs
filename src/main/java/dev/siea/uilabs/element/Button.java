@@ -1,9 +1,10 @@
 package dev.siea.uilabs.element;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 
 import java.util.List;
 
@@ -12,15 +13,15 @@ public class Button extends ItemElement {
         super(material);
     }
 
-    public Button(Material material, String name) {
+    public Button(Material material, Component name) {
         super(material, name);
     }
 
-    public Button(Material material, String name, List<String> lore) {
+    public Button(Material material, Component name, List<Component> lore) {
         super(material, name, lore);
     }
 
-    public Button(Material material, String name, List<String> lore, int amount) {
+    public Button(Material material, Component name, List<Component> lore, int amount) {
         super(material, name, lore, amount);
     }
 
@@ -29,7 +30,7 @@ public class Button extends ItemElement {
     }
 
     public void onButtonPressed(InventoryClickEvent e) {
-        e.getWhoClicked().sendMessage(ChatColor.GREEN + "This is a button");
+        e.getWhoClicked().sendMessage(Component.text("This is a button", NamedTextColor.GREEN));
     }
 
     @Override
