@@ -79,7 +79,7 @@ public final class Frame {
     }
 
     public void setBorder(Border border) {
-        Map<Integer, Element> borderElements = border.generateBorder(height);
+        Map<Integer, Element> borderElements = border.generateBorder(height, width);
         for (Map.Entry<Integer, Element> entry : borderElements.entrySet()) {
             addElement(entry.getValue(), entry.getKey());
         }
