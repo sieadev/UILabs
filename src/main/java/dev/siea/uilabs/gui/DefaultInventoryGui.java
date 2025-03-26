@@ -8,6 +8,9 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class DefaultInventoryGui extends AbstractInventoryGui {
     private final Inventory view;
     private final Frame frame;
@@ -30,6 +33,10 @@ public final class DefaultInventoryGui extends AbstractInventoryGui {
         }
     }
 
+    public List<HumanEntity> getViewers() {
+        return frame.getViewers();
+    }
+
     public void addElement(Element element) {
         frame.addElement(element);
     }
@@ -42,6 +49,10 @@ public final class DefaultInventoryGui extends AbstractInventoryGui {
         frame.addElement(element);
     }
 
+    public void removeAll() {
+        frame.removeAll();
+    }
+
     @Override
     public void setBorder(Border border) {
         frame.setBorder(border);
@@ -49,6 +60,6 @@ public final class DefaultInventoryGui extends AbstractInventoryGui {
 
     @Override
     public void closeAll() {
-        view.getViewers().forEach(HumanEntity::closeInventory);
+        new ArrayList<>(view.getViewers()).forEach(HumanEntity::closeInventory);
     }
 }

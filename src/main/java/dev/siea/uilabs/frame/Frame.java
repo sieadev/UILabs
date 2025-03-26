@@ -6,6 +6,7 @@ import dev.siea.uilabs.element.Element;
 import dev.siea.uilabs.element.ItemElement;
 import dev.siea.uilabs.gui.InventoryGui;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -58,6 +59,14 @@ public final class Frame {
         return inventory;
     }
 
+    public List<HumanEntity> getViewers() {
+        List<HumanEntity> viewers = new ArrayList<>();
+        for (Inventory view : views) {
+            viewers.addAll(view.getViewers());
+        }
+        return viewers;
+    }
+
     public void addElement(@NotNull Element element) {
         for (int i = 0; i < width * height; i++) {
             if (elements.get(i) == null) {
@@ -97,6 +106,14 @@ public final class Frame {
                 updateViews(entry.getKey(), null);
                 return;
             }
+        }
+    }
+
+    public void removeAll() {
+        for (Map.Entry<Integer, Element> entry : elements.entrySet()) {
+            elements.remove(entry.getKey());
+            updateViews(entry.getKey(), null);
+            return;
         }
     }
 
