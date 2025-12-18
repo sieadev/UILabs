@@ -1,61 +1,58 @@
 package dev.siea.uilabs.element;
 
-public class Element implements Cloneable {
-    protected Priority priority;
-    protected boolean fixedPosition;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-    public Element() {
-        this(Priority.NORMAL, false);
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public abstract class Element {
+
+    private final ItemStack itemstack;
+
+    public Element(Material material) {
+        this(new ItemStack(material));
     }
 
-    public Element(Priority priority) {
-        this(priority, false);
+    public Element(Material material, String name) {
+        this(material, name, null);
     }
 
-    public Element(boolean fixedPosition) {
-        this(Priority.NORMAL, fixedPosition);
+    public Element(Material material, String name, List<String> lore) {
+        this(createItem(material, name, lore));
     }
 
-    public Element(Priority priority, boolean fixedPosition) {
-        this.priority = priority;
-        this.fixedPosition = fixedPosition;
+    public Element(ItemStack item) {
+        this.itemstack = Objects.requireNonNull(item, "ItemStack cannot be null").clone();
     }
 
-    public final Priority getPriority() {
-        return priority;
-    }
+    private static ItemStack createItem(Material material, String name, List<String> lore) {
+        Objects.requireNonNull(material, "Material cannot be null");
 
-    public final void setPriority(Priority priority) {
-        this.priority = priority;
-    }
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
 
-    public final void setPriority(int priority) {
-        this.priority = Priority.values()[priority];
-    }
+        if (meta != null) {
+            if (name != null) {
+                meta.setDisplayName(name);
+            }
 
-    public final boolean isFixedPosition() {
-        return fixedPosition;
-    }
+            if (lore != null && !lore.isEmpty()) {
+                meta.setLore(new ArrayList<>(lore));
+            }
 
-    public final void setFixedPosition(boolean fixedPosition) {
-        this.fixedPosition = fixedPosition;
-    }
-
-    public enum Priority {
-        BACKGROUND,
-        LOWEST,
-        LOW,
-        NORMAL,
-        HIGH,
-        HIGHEST;
-    }
-
-    @Override
-    public Element clone() {
-        try {
-            return (Element) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);
+            item.setItemMeta(meta);
         }
+
+        return item;
+    }
+
+    /**
+     * Returns a clone to protect internal state.
+     */
+    public ItemStack getItemstack() {
+        return itemstack.clone();
     }
 }

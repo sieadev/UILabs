@@ -1,74 +1,50 @@
 package dev.siea.uilabs;
 
-import dev.siea.uilabs.frame.Border;
-import dev.siea.uilabs.gui.DefaultInventoryGui;
-import dev.siea.uilabs.gui.InventoryGui;
-import dev.siea.uilabs.gui.PagedInventoryGui;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.server.PluginDisableEvent;
+import dev.siea.uilabs.listeners.ConnectionListener;
+import dev.siea.uilabs.listeners.GuiListener;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UILabs {
-    private final Plugin plugin;
-    private final List<InventoryGui> registry = new ArrayList<>();
-    private boolean allowCloseDefault = true;
-    private Border defaultBorder;
+    private static boolean loaded = false;
+    private static ConnectionListener connectionListener;
+    private static GuiListener guiListener;
 
-    public UILabs(Plugin plugin) {
-        this.plugin = plugin;
-        plugin.getServer().getPluginManager().registerEvents(new LifecycleListener(), plugin);
+    private UILabs() {}
+
+    /**
+     * Registers the UILabs API listeners for a plugin.
+     * If already loaded, does nothing.
+     *
+     * @param plugin the plugin that wants to use UILabs
+     */
+    public static void register(Plugin plugin) {
+        if (loaded) return;
+
+        connectionListener = new ConnectionListener();
+        guiListener = new GuiListener();
+
+        Bukkit.getPluginManager().registerEvents(connectionListener, plugin);
+        Bukkit.getPluginManager().registerEvents(guiListener, plugin);
+
+        loaded = true;
     }
 
-    public DefaultInventoryGui create(String name) {
-        return create(name, 6, 9);
+    /**
+     * Returns true if UILabs has already been loaded/registered.
+     */
+    public static boolean isLoaded() {
+        return loaded;
     }
 
-    public DefaultInventoryGui create(String name, int height, int width) {
-        DefaultInventoryGui inventoryGui = new DefaultInventoryGui(this, name, height, width);
-        if (defaultBorder != null) inventoryGui.setBorder(defaultBorder);
-        inventoryGui.setAllowClose(allowCloseDefault);
-        registry.add(inventoryGui);
-        return inventoryGui;
+    /**
+     * Optionally expose the listeners if needed.
+     */
+    public static ConnectionListener getConnectionListener() {
+        return connectionListener;
     }
 
-    public PagedInventoryGui createPaged(String name) {
-        return createPaged(name, 9, 6);
-    }
-
-    public PagedInventoryGui createPaged(String name, int height, int width) {
-        PagedInventoryGui inventoryGui = new PagedInventoryGui(this, name, height, width);
-        if (defaultBorder != null) inventoryGui.setBorder(defaultBorder);
-        inventoryGui.setAllowClose(allowCloseDefault);
-        registry.add(inventoryGui);
-        return inventoryGui;
-    }
-
-    public void registerCustomGui(InventoryGui gui) {
-        registry.add(gui);
-    }
-
-    public void setAllowCloseDefault(boolean allowClose) {
-        this.allowCloseDefault = allowClose;
-    }
-
-    public void setDefaultBorder(Border border) {
-        this.defaultBorder = border;
-    }
-
-    public Plugin getPlugin() {
-        return plugin;
-    }
-
-    private class LifecycleListener implements Listener {
-        @EventHandler
-        public void onDisable(PluginDisableEvent e) {
-            for (InventoryGui gui : registry) {
-                gui.closeAll();
-            }
-        }
+    public static GuiListener getGuiListener() {
+        return guiListener;
     }
 }
